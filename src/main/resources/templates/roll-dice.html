@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Roll Dice</title>
+</head>
+<body>
+
+  <h1 th:text="${answer}"></h1>
+  <h1 th:text="${guess}"></h1>
+  <h1 th:text="${result}"></h1>
+
+  <form action="/roll-dice/1" method="get">
+    <button type="submit" name="guess" value="1">1</button>
+  </form>
+  <form action="/roll-dice/2" method="get">
+    <button type="submit" name="guess" value="2">2</button>
+  </form>
+  <form action="/roll-dice/3" method="get">
+    <button type="submit" name="guess" value="3">3</button>
+  </form>
+  <form action="/roll-dice/4" method="get">
+    <button type="submit" name="guess" value="4">4</button>
+  </form>
+  <form action="/roll-dice/5" method="get">
+    <button type="submit" name="guess" value="5">5</button>
+  </form>
+  <form action="/roll-dice/6" method="get">
+    <button type="submit" name="guess" value="6">6</button>
+  </form>
+
+</body>
+</html>
