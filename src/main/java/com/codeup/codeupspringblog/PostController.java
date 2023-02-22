@@ -8,16 +8,14 @@ public class PostController {
 
     // Get All Posts
     @GetMapping("/posts")
-    @ResponseBody
     public String getAllPosts(){
-        return "Posting all posts...";
+        return "posts/index";
     }
 
     // Get Post by ID
     @GetMapping("/posts/{id}")
-    @ResponseBody
     public String getPost(@PathVariable int id){
-        return "Posting #" + id + "...";
+        return "posts/show";
     }
 
     // Draft a Post
