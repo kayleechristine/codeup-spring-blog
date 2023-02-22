@@ -24,13 +24,13 @@ public class RollDiceController {
     public String testBoolean(@PathVariable String guess, Model model) {
         Random rand = new Random();
         int randomNum = rand.nextInt((6 - 1) + 1) + 1;
-        model.addAttribute("answer", "The number was: " + randomNum);
+        model.addAttribute("answer", "Answer: " + randomNum);
         if (guess.equals(String.valueOf(randomNum))) {
             model.addAttribute("result", "You were correct!");
         } else {
             model.addAttribute("result", "Nope, try again!");
         }
-        model.addAttribute("guess", "Your guess was: " + guess);
+        model.addAttribute("guess", "Guess: " + guess);
         return "roll-dice";
     }
 
