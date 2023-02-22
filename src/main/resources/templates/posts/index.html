@@ -7,9 +7,19 @@
   <nav th:replace="partials :: navbar"></nav>
 
   <div id="index-post-div" class="container col-9">
+    <h1>Browse Posts</h1><hr>
     <div th:each="post : ${allPosts}">
-      <a th:href="@{'/posts/' + ${post.getId()}}" th:text="${post.getTitle()}" href="#" class="h1">Post Title</a><hr>
-      <p th:text="${post.getBody()}">Post body...</p>
+      <div class="card mb-3">
+        <div class="card-header">
+          <h6 th:text="${post.getUser().getUsername()}" class="card-subtitle mb-2 d-inline">Username</h6>
+          <small th:text="${post.getUser().getEmail()}" class="card-subtitle mb-2 text-muted d-inline">Email</small>
+        </div>
+        <div class="card-body">
+          <h3 th:text="${post.getTitle()}" class="card-title mb-2">Post Title</h3>
+          <p th:text="${post.getBody()}" class="card-text">Post body...</p>
+          <a th:href="@{'/posts/' + ${post.getId()}}" href="#" class="btn btn-primary">View Post</a>
+        </div>
+      </div>
     </div>
   </div>
 
