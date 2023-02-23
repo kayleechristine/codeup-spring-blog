@@ -7,15 +7,15 @@
   <nav th:replace="partials :: navbar"></nav>
 
   <div id="create-post-div" class="container col-9">
-    <form method="POST" action="/posts/create">
-      <h1>Create Post</h1><hr>
+    <h1>Create Post</h1><hr>
+    <form th:method="POST" th:action="@{/posts/create}" th:object="${post}">
       <div class="mb-3">
         <label for="title" class="form-label">Title</label>
-        <input type="text" class="form-control" name="title" id="title">
+        <input type="text" class="form-control" id="title" th:field="*{title}">
       </div>
       <div class="mb-3">
         <label for="body" class="form-label">Description</label>
-        <textarea class="form-control" name="body" id="body" rows="3"></textarea>
+        <textarea class="form-control" id="body" rows="3" th:field="*{body}"></textarea>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>

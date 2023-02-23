@@ -34,15 +34,31 @@ public class PostController {
 
     // Draft a Post
     @GetMapping("/posts/create")
-    public String createPost(){
+    public String draftPost(Model model){
+        model.addAttribute("post", new Post());
         return "posts/create";
     }
 
     // Create a Post
     @PostMapping("/posts/create")
-    public String submitPost(@RequestParam String title, @RequestParam String body) {
-        Post newPost = new Post(title, body, userDao.findById(1L).get().getUser());
+    public String createPost(@ModelAttribute Post post) {
+        Post newPost = new Post(post.getTitle(), post.getBody(), userDao.findById(1L).get().getUser());
         postDao.save(newPost);
         return "redirect:/posts";
+    }
+
+    // Edit a Post
+    @GetMapping("/posts/{id}/edit")
+    public String editPost(@PathVariable long id, Model model){
+        model.addAttribute("post", postDao.findById(id).get());
+        return "posts/edit";
+    }
+
+    // Submit an Edit
+    @PostMapping("/posts/{id}/edit")
+    public String updatePost(@PathVariable long id, @ModelAttribute Post post) {
+        post.setUser(userDao.findById(1L).get().getUser());
+        postDao.save(post);
+        return "redirect:/posts/" + post.getId();
     }
 }
