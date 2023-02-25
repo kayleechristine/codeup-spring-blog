@@ -8,7 +8,7 @@
 
 <div id="create-post-div" class="container col-9">
   <h1>Edit Post</h1><hr>
-  <form th:method="POST" th:action="@{/posts/{id}/edit (id = ${post.id})}" th:object="${post}">
+  <form th:method="POST" th:action="@{/posts/edit}" th:object="${post}">
     <input type="hidden" id="id" th:field="*{id}">
     <div class="mb-3">
       <label for="title" class="form-label">Title</label>

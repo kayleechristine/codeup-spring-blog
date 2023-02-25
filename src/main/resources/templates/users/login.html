@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials :: head">
+  <title>View Post</title>
+</head>
+<body style="padding-bottom: 150px;">
+
+  <nav th:replace="partials :: navbar"></nav>
+  <div class="container">
+    <h1 class="justify-content-center">Log In</h1><hr>
+
+    <form th:action="@{/login}" method="post" class="col-4 d-flex flex-column m-auto justify-content-center">
+
+      <!-- Authentication feedback -->
+      <div th:if="${param.error}" class="align-self-center mb-2 small">
+        <span class="badge text-bg-danger">Invalid username or password.</span>
+      </div>
+      <div th:if="${param.logout}" class="align-self-center mb-2 small">
+        <span class="badge text-bg-primary">You have been logged out.</span>
+      </div>
+
+      <!-- Email input -->
+      <div class="form-outline form-floating mb-3">
+        <input type="text" id="username" name="username" class="form-control" />
+        <label class="form-label" for="username">Username</label>
+      </div>
+
+      <!-- Password input -->
+      <div class="form-outline form-floating mb-3">
+        <input type="password" id="password" name="password" class="form-control" />
+        <label class="form-label" for="password">Password</label>
+      </div>
+
+      <!-- Submit button -->
+      <button type="submit" class="btn btn-primary btn-block mb-4 w-25 align-self-center">Sign in</button>
+
+      <!-- Register buttons -->
+      <div class="text-center">
+        <p>Not a member? <a href="/sign-up">Register</a></p>
+      </div>
+    </form>
+  </div>
+
+  <footer th:replace="partials :: footer"></footer>
+  <div th:replace="partials :: script"></div>
+</body>
+</html>

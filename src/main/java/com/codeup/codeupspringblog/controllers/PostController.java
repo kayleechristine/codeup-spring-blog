@@ -1,8 +1,9 @@
 package com.codeup.codeupspringblog.controllers;
 
 import com.codeup.codeupspringblog.models.Post;
-import com.codeup.codeupspringblog.repositories.PostRepository;
-import com.codeup.codeupspringblog.repositories.UserRepository;
+import com.codeup.codeupspringblog.services.EmailService;
+import com.codeup.codeupspringblog.services.PostDaoService;
+import com.sendgrid.Email;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,25 +11,26 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class PostController {
 
-    // Repository Instantiation
-    private final PostRepository postDao;
-    private final UserRepository userDao;
-    public PostController(PostRepository postDao, UserRepository userDao) {
-        this.postDao = postDao;
-        this.userDao = userDao;
+    // Service Injection
+    private final PostDaoService postService;
+    private final EmailService emailService;
+
+    public PostController(PostDaoService postService, EmailService emailService) {
+        this.postService = postService;
+        this.emailService = emailService;
     }
 
-    // Get All Posts
+    // Browse All Posts
     @GetMapping("/posts")
-    public String getAllPosts(Model model){
-        model.addAttribute("allPosts", postDao.findAll());
+    public String browsePosts(Model model){
+        model.addAttribute("posts", postService.getAllPosts());
         return "posts/index";
     }
 
-    // Get Post by ID
+    // View a Post
     @GetMapping("/posts/{id}")
-    public String getPost(@PathVariable long id, Model model){
-        model.addAttribute("post", postDao.findById(id).get());
+    public String viewPost(@PathVariable long id, Model model){
+        model.addAttribute("post", postService.getPostById(id));
         return "posts/show";
     }
 
@@ -42,23 +44,30 @@ public class PostController {
     // Create a Post
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post) {
-        Post newPost = new Post(post.getTitle(), post.getBody(), userDao.findById(1L).get().getUser());
-        postDao.save(newPost);
+        postService.savePost(post);
+        emailService.sendTextEmail(post);
         return "redirect:/posts";
     }
 
     // Edit a Post
     @GetMapping("/posts/{id}/edit")
     public String editPost(@PathVariable long id, Model model){
-        model.addAttribute("post", postDao.findById(id).get());
+        model.addAttribute("post", postService.getPostById(id));
         return "posts/edit";
     }
 
     // Submit an Edit
-    @PostMapping("/posts/{id}/edit")
-    public String updatePost(@PathVariable long id, @ModelAttribute Post post) {
-        post.setUser(userDao.findById(1L).get().getUser());
-        postDao.save(post);
+    @PostMapping("/posts/edit")
+    public String updatePost(@ModelAttribute Post post) {
+        postService.savePost(post);
         return "redirect:/posts/" + post.getId();
     }
+
+    // Delete a Post
+    @GetMapping("/posts/{id}/delete")
+    public String deletePost(@PathVariable long id) {
+        postService.deletePostById(id);
+        return "redirect:/posts";
+    }
+
 }

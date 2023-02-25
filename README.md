@@ -16,6 +16,7 @@ A full-stack Spring Boot Application where users can register for an account, cr
   - Spring Web
 - Thymeleaf
 - MySQL 8
+- SendGrid API
 
 ## Configuration
 In order to configure our MySQL Database credentials, please refer to the `example.properties` file for necessary information.

@@ -11,29 +11,28 @@
   <div id="show-post-div" class="container col-9">
     <div class="d-inline-flex w-100">
       <div class="flex-grow-1 mb-0">
-        <h1 th:text="${post.getTitle()}" class="d-flex d-inline-block mb-0">View Post</h1>
+        <h1 th:text="${post.title}" class="d-flex d-inline-block mb-0">View Post</h1>
       </div>
       <div class="">
         <a
                 class="btn text-white mt-2"
                 style="background-color: #2999ed; width: 50px; height: 40px;"
-                th:href="@{'/posts/' + ${post.getId()} + '/edit'}"
-                href="#!"
+                th:href="@{'/posts/' + ${post.id} + '/edit'}"
+                href="#"
                 role="button"
         ><i class="fa-solid fa-pen-to-square"></i></a>
         <a
                 class="btn text-white mt-2"
                 style="background-color: #db2627; width: 50px; height: 40px;"
-                href="#!"
+                th:href="@{'/posts/' + ${post.id} + '/edit'}"
+                href="#"
                 role="button"
         ><i class="fa fa-trash-can"></i></a>
       </div>
     </div>
     <hr>
-    <p th:text="${post.getBody()}">Description here.</p>
+    <p th:text="${post.body}">Description here.</p>
   </div>
-
-
 
   <footer th:replace="partials :: footer"></footer>
   <div th:replace="partials :: script"></div>
