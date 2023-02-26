@@ -5,6 +5,7 @@
 </head>
 <body style="padding-bottom: 150px;">
   <nav th:replace="partials :: navbar"></nav>
+
   <i class="fa-solid fa-circle-arrow-left" style="scale: 250%; position: absolute; top: 40%; left: 30px;"></i>
   <i class="fa-solid fa-circle-arrow-right" style="scale: 250%; position: absolute; top: 40%; right: 30px;"></i>
 
@@ -24,7 +25,7 @@
         <a
                 class="btn text-white mt-2"
                 style="background-color: #db2627; width: 50px; height: 40px;"
-                th:href="@{'/posts/' + ${post.id} + '/edit'}"
+                th:href="@{'/posts/' + ${post.id} + '/delete'}"
                 href="#"
                 role="button"
         ><i class="fa fa-trash-can"></i></a>
