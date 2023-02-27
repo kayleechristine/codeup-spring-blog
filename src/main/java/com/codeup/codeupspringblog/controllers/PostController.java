@@ -3,7 +3,6 @@ package com.codeup.codeupspringblog.controllers;
 import com.codeup.codeupspringblog.models.Post;
 import com.codeup.codeupspringblog.services.EmailService;
 import com.codeup.codeupspringblog.services.PostDaoService;
-import com.sendgrid.Email;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
