@@ -56,6 +56,7 @@ public class SecurityConfiguration {
                         "/posts/create", // only authenticated users can create ads
                         "/posts/{id}/edit", "/posts/edit", // only authenticated users can edit ads
                         "/posts/{id}/delete" // only authenticated users can delete ads
+                        /* NOTE: "/posts/**" will catch all pages subordinate to the posts URI */
                 )
                 .authenticated()
         ;

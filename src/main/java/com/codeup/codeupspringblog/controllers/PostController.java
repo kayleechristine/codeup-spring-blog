@@ -45,7 +45,7 @@ public class PostController {
     public String createPost(@ModelAttribute Post post) {
         postService.savePost(post);
         emailService.sendTextEmail(post);
-        return "redirect:/posts";
+        return "redirect:/posts/" + post.getId();
     }
 
     // Edit a Post
