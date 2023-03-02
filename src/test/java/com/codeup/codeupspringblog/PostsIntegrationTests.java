@@ -142,7 +142,7 @@ public class PostsIntegrationTests {
                 .andExpect(content().string(containsString("edited description")));
     }
 
-//     DELETE Test
+    // DELETE Test
     @Test
     public void testDeletePost() throws Exception {
         // Creates a test Post to be deleted
@@ -163,9 +163,5 @@ public class PostsIntegrationTests {
                                 .param("id", String.valueOf(existingPost.getId())))
                 .andExpect(status().is3xxRedirection());
     }
-
-
-
-
 
 }
